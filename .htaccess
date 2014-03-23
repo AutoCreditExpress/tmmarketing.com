@@ -1,0 +1,17 @@
+Options +MultiViews
+DirectoryIndex index index.php index.html
+IndexIgnore */*
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^wemarketenergy.com [NC]
+RewriteRule ^(.*)$ http://www.wemarketenergy.com [L,R=301]
+
+<IfModule mod_rewrite.c>
+    # Redirect /index.php to / (optional, but recommended I guess)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.php
+    RewriteRule ^index.php/?(.*)$ $1 [R=301,L]
+
+    # Run everything else but real files through index.php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ router.php/$1?%{QUERY_STRING} [L]
+</IfModule>
