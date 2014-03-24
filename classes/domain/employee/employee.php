@@ -9,7 +9,7 @@
 namespace classes\domain\employee;
 
 
-class employee {
+class Employee {
 
     protected $employeeID = '';
     protected $firstName = '';

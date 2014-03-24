@@ -9,7 +9,7 @@
 namespace classes\domain\employee;
 
 
-class employeeDAO {
+class EmployeeDAO {
 
     function getEmployeeDetails($employeeID){
 

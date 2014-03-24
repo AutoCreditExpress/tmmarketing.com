@@ -259,7 +259,7 @@ include($docPath.'inc/template/header.php');
                                     </div>
 
                                     <div class="wpcf7-form-control-wrap your-message">
-                                        <textarea name="respons1" rows="8" cols="5"  class="wpcf7-form-control wpcf7-textarea">Describe Your responsibilities for this position...</textarea>
+                                        <textarea name="response1" rows="8" cols="5"  class="wpcf7-form-control wpcf7-textarea">Describe Your responsibilities for this position...</textarea>
                                         </span> </div>
                                     <div>
 
@@ -278,7 +278,7 @@ include($docPath.'inc/template/header.php');
                                     </div>
 
                                     <div class="wpcf7-form-control-wrap your-message">
-                                        <textarea name="respons2" rows="8" cols="5"  class="wpcf7-form-control wpcf7-textarea">Describe Your responsibilities for this position...</textarea>
+                                        <textarea name="response2" rows="8" cols="5"  class="wpcf7-form-control wpcf7-textarea">Describe Your responsibilities for this position...</textarea>
                                         </span> </div>
                                     <div>
 
