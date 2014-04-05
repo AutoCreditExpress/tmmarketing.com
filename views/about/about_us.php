@@ -86,7 +86,7 @@ include($docPath.'inc/template/header.php');
                       </div>
                       <p>
                           When Brian is not spending time with his beautiful wife and daughter he devotes his time to
-                          learning new things about life, business, technology and marketing. 8 the past eight years he
+                          learning new things about life, business, technology and marketing. Over the past eight years he
                           has been working in Digital Marketing and as come to specialize in Business Intelligence and
                           Search Engine Optimization. Brian understands what it takes to get the job done for both small
                           businesses and large corporations. He is a hands on kind of guy and looks at all strategies holistically.

@@ -11,23 +11,23 @@ namespace classes\domain\employee;
 
 class Employee {
 
-    protected $employeeID = '';
-    protected $firstName = '';
-    protected $lastName = '';
-    protected $address = '';
-    protected $unit = '';
-    protected $city = '';
-    protected $state = '';
-    protected $zip = '';
-    protected $userID = '';
-    protected $titleID = '';
+    protected $employeeID   = '';
+    protected $firstName    = '';
+    protected $lastName     = '';
+    protected $address      = '';
+    protected $unit         = '';
+    protected $city         = '';
+    protected $state        = '';
+    protected $zip          = '';
+    protected $userID       = '';
+    protected $titleID      = '';
     protected $payProfileID = '';
-    protected $startDate = '';
-    protected $endDate = '';
-    protected $officeID = '';
+    protected $startDate    = '';
+    protected $endDate      = '';
+    protected $officeID     = '';
     protected $employmentStatus = '';
-    protected $title = '';
-    protected $payProfile = '';
+    protected $title        = '';
+    protected $payProfile   = '';
 
     /**
      * @param string $address
@@ -292,8 +292,6 @@ class Employee {
     {
         $this->title = $title;
     }
-
-
 
     /**
      * @return string
