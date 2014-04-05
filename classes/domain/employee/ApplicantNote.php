@@ -9,7 +9,7 @@
 namespace classes\domain\employee;
 
 
-class ApplicantNotes {
+class ApplicantNote {
 
     protected $noteID = '';
     protected $applicantID = '';

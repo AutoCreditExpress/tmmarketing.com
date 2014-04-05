@@ -54,7 +54,5 @@ class EmployeeDAO {
             echo $e;
         }
 
-
-
     }
 } 

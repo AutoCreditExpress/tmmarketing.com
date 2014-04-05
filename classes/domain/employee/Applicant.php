@@ -27,9 +27,9 @@ class Applicant {
     protected $applicantCompany2 = '';
     protected $applicantPosition2 = '';
     protected $applicantResponse2 = '';
-    protected $applicationDate = '';
-    protected $applicationEmployeeID = '';
-    protected $applicationOfficeID = '';
+    protected $applicantDate = '';
+    protected $applicantEmployeeID = '';
+    protected $applicantOfficeID = '';
     protected $applicantStatus = '';
 
     /**
@@ -83,6 +83,22 @@ class Applicant {
     /**
      * @return string
      */
+    public function getApplicantDate()
+    {
+        return $this->applicantDate;
+    }
+
+    /**
+     * @param string $applicantDate
+     */
+    public function setApplicantDate($applicantDate)
+    {
+        $this->applicantDate = $applicantDate;
+    }
+
+    /**
+     * @return string
+     */
     public function getApplicantEmail()
     {
         return $this->applicantEmail;
@@ -94,6 +110,22 @@ class Applicant {
     public function setApplicantEmail($applicantEmail)
     {
         $this->applicantEmail = $applicantEmail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApplicantEmployeeID()
+    {
+        return $this->applicantEmployeeID;
+    }
+
+    /**
+     * @param string $applicantEmployeeID
+     */
+    public function setApplicantEmployeeID($applicantEmployeeID)
+    {
+        $this->applicantEmployeeID = $applicantEmployeeID;
     }
 
     /**
@@ -142,6 +174,22 @@ class Applicant {
     public function setApplicantLast($applicantLast)
     {
         $this->applicantLast = $applicantLast;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApplicantOfficeID()
+    {
+        return $this->applicantOfficeID;
+    }
+
+    /**
+     * @param string $applicantOfficeID
+     */
+    public function setApplicantOfficeID($applicantOfficeID)
+    {
+        $this->applicantOfficeID = $applicantOfficeID;
     }
 
     /**
@@ -243,6 +291,22 @@ class Applicant {
     /**
      * @return string
      */
+    public function getApplicantStatus()
+    {
+        return $this->applicantStatus;
+    }
+
+    /**
+     * @param string $applicantStatus
+     */
+    public function setApplicantStatus($applicantStatus)
+    {
+        $this->applicantStatus = $applicantStatus;
+    }
+
+    /**
+     * @return string
+     */
     public function getApplicantStreet()
     {
         return $this->applicantStreet;
@@ -288,69 +352,6 @@ class Applicant {
         $this->applicantZip = $applicantZip;
     }
 
-    /**
-     * @return string
-     */
-    public function getApplicationDate()
-    {
-        return $this->applicationDate;
-    }
-
-    /**
-     * @param string $applicationDate
-     */
-    public function setApplicationDate($applicationDate)
-    {
-        $this->applicationDate = $applicationDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getApplicationEmployeeID()
-    {
-        return $this->applicationEmployeeID;
-    }
-
-    /**
-     * @param string $applicationEmployeeID
-     */
-    public function setApplicationEmployeeID($applicationEmployeeID)
-    {
-        $this->applicationEmployeeID = $applicationEmployeeID;
-    }
-
-    /**
-     * @return string
-     */
-    public function getApplicationOfficeID()
-    {
-        return $this->applicationOfficeID;
-    }
-
-    /**
-     * @param string $applicationOfficeID
-     */
-    public function setApplicationOfficeID($applicationOfficeID)
-    {
-        $this->applicationOfficeID = $applicationOfficeID;
-    }
-
-    /**
-     * @return string
-     */
-    public function getApplicantStatus()
-    {
-        return $this->applicantStatus;
-    }
-
-    /**
-     * @param string $applicantStatus
-     */
-    public function setApplicantStatus($applicantStatus)
-    {
-        $this->applicantStatus = $applicantStatus;
-    }
 
 
 
