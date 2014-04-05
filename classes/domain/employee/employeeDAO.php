@@ -11,7 +11,19 @@ namespace classes\domain\employee;
 
 class EmployeeDAO {
 
+    protected $db = '';
+
+    function __construct(PDO $pdo){
+        $this->db = $pdo;
+    }
+
     function getEmployeeDetails($employeeID){
+
+    }
+
+    function createEmployee(Applicant $applicantObject, array $employeeArray){
+
+
 
     }
 } 

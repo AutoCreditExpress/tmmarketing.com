@@ -30,6 +30,7 @@ class Applicant {
     protected $applicationDate = '';
     protected $applicationEmployeeID = '';
     protected $applicationOfficeID = '';
+    protected $applicantStatus = '';
 
     /**
      * @return string
@@ -334,6 +335,23 @@ class Applicant {
     {
         $this->applicationOfficeID = $applicationOfficeID;
     }
+
+    /**
+     * @return string
+     */
+    public function getApplicantStatus()
+    {
+        return $this->applicantStatus;
+    }
+
+    /**
+     * @param string $applicantStatus
+     */
+    public function setApplicantStatus($applicantStatus)
+    {
+        $this->applicantStatus = $applicantStatus;
+    }
+
 
 
 
