@@ -13,8 +13,11 @@ class ApplicantActivity {
 
     protected $activityID = '';
     protected $activityStatusID = '';
-    protected $applicantStatus = '';
     protected $activityDate = '';
+    protected $activityCreateUser = '';
+    protected $activityUpdateUser = '';
+    protected $activityCreateDate = '';
+    protected $activityUpdateDate = '';
 
     /**
      * @return string
@@ -79,6 +82,26 @@ class ApplicantActivity {
     {
         $this->applicantStatus = $applicantStatus;
     }
+
+
+    /**
+     * @param string $activityCreateUser
+     */
+    public function setActivityCreateUser($activityCreateUser)
+    {
+        $this->activityCreateUser = $activityCreateUser;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActivityCreateUser()
+    {
+        return $this->activityCreateUser;
+    }
+
+
+
 
 
 

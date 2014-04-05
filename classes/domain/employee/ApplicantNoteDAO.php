@@ -1,17 +1,17 @@
 <?php
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                              
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Created by PhpStorm.
+ * User: bslaght123
+ * Date: 4/5/14
+ * Time: 12:22 PM
+ */
 
 namespace classes\domain\employee;
 
 
 use OAuth2\Exception;
 
-class ApplicantStatusDAO {
+class ApplicantNoteDAO {
 
     protected $db = '';
 
@@ -25,16 +25,16 @@ class ApplicantStatusDAO {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function getALLStatuses(){
-        $qAllStatuses = $this->db->prepare("
-            SELECT * FROM applicant_status;
+    function getAllNotes(){
+        $qAllNotes = $this->db->prepare("
+            SELECT * FROM note;
         ");
 
         try{
-            $allStatusResults = $qAllStatuses->ececute();
-            $allStatuses = $this->mapStatusToObjects($allStatusResults);
+            $qAllNoteResults = $qAllNotes->execute();
+            $allNoteResults = $this->mapNoteToObjects($qAllNoteResults);
 
-            return $allStatuses;
+            return $allNoteResults;
         }
         catch(Exception $e){
             echo $e;
@@ -42,41 +42,22 @@ class ApplicantStatusDAO {
         }
     }
 
-    function getALLStatusesFromGroup($groupID){
-        $qAllStatuses = $this->db->prepare("
-            SELECT * FROM applicant_status WHERE as_asg_id = ".$groupID.";
+    function getNoteFromID($noteID){
+        $qNote = $this->db->prepare("
+            SELECT * FROM note;
         ");
 
         try{
-            $allStatusResults = $qAllStatuses->ececute();
-            $allStatuses = $this->mapStatusToObjects($allStatusResults);
+            $qNoteResult = $qNote->execute();
+            $noteResults= $this->mapNoteToObjects($qNoteResult);
 
-            return $allStatuses;
+            return $noteResults;
         }
         catch(Exception $e){
             echo $e;
             return false;
         }
     }
-
-
-    function getStatusFromID($statusID){
-        $qStatus = $this->db->prepare("
-            SELECT * FROM applicant_status WHERE as_id = ".$statusID.";
-        ");
-
-        try{
-            $statusResults = $qStatus->ececute();
-            $status = $this->mapStatusToObjects($statusResults);
-
-            return $status;
-        }
-        catch(Exception $e){
-            echo $e;
-            return false;
-        }
-    }
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,9 +84,9 @@ class ApplicantStatusDAO {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected function mapStatusToObjects(PDOStatement $stmt){
+    protected function mapNoteToObjects(PDOStatement $stmt){
 
-        $statuses = array(); //Array that will contain many Status.
+        $notes = array(); //Array that will contain many Status.
         try{
             //Checks to see if there are no Status returned.
             if( ($aRow = $stmt->fetch()) === false) {
@@ -113,24 +94,28 @@ class ApplicantStatusDAO {
             }
             do{
                 //Creates new user profile object for each applicant selected.
-                $status = new ApplicantStatus();
-                $status->setStatusID($aRow['as_id']);
-                $status->setStatusName($aRow['as_name']);
-                $status->setStatusGroup($aRow['as_asg_id']);
-                $status->setStatusCreateUser($aRow['as_create_employee_id']);
-                $statuses[] = $status; // applicant to main array.
+                $note = new ApplicantNote();
+                $note->setNoteID($aRow['note_id']);
+                $note->setApplicantID($aRow['note_applicant_id']);
+                $note->setNoteName($aRow['note_name']);
+                $note->setNoteValue($aRow['note_value']);
+                $note->setNoteAppointmentID($aRow['note_appointmentID']);
+                $notes[] = $notes; // applicant to main array.
             } while(($aRow = $stmt->fetch()) !== false);
         } catch(Exception $e){
             //Error in initial SQL statement.
             echo $e;
         }
         //Final results will all the applicants.
-        if(count($statuses) == 1){
-            return $statuses[0];
+        if(count($notes) == 1){
+            return $notes[0];
         }
         else{
-            return $statuses;
+            return $notes;
         }
 
     }
+
+
+
 } 

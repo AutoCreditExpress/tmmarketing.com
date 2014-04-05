@@ -14,13 +14,13 @@ class ApplicantAppointment {
     protected $appointmentID = '';
     protected $applicantID = '';
     protected $appointmentDate = '00-00-00 00:00:00';
-    protected $appointmentTypeID = '';
-    protected $appointmentType = '';
     protected $appointmentContactID = '';
     protected $appointmentContact = '';
     protected $appointmentOfficeID = '';
     protected $appointmentOffice = '';
-    protected $appointmentStatus = '';
+    protected $appointmentStatusID = '';
+    protected $appointmentCreateUser = '';
+    protected $appointmentCreateDate = '';
 
     /**
      * @return string
@@ -137,17 +137,17 @@ class ApplicantAppointment {
     /**
      * @return string
      */
-    public function getAppointmentStatus()
+    public function getAppointmentStatusID()
     {
-        return $this->appointmentStatus;
+        return $this->appointmentStatusID;
     }
 
     /**
      * @param string $appointmentStatus
      */
-    public function setAppointmentStatus($appointmentStatus)
+    public function setAppointmentStatusID($appointmentStatus)
     {
-        $this->appointmentStatus = $appointmentStatus;
+        $this->appointmentStatusID = $appointmentStatus;
     }
 
     /**
@@ -181,6 +181,39 @@ class ApplicantAppointment {
     {
         $this->appointmentTypeID = $appointmentTypeID;
     }
+
+    /**
+     * @param string $appointmentCreateDate
+     */
+    public function setAppointmentCreateDate($appointmentCreateDate)
+    {
+        $this->appointmentCreateDate = $appointmentCreateDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAppointmentCreateDate()
+    {
+        return $this->appointmentCreateDate;
+    }
+
+    /**
+     * @param string $appointmentCreateUser
+     */
+    public function setAppointmentCreateUser($appointmentCreateUser)
+    {
+        $this->appointmentCreateUser = $appointmentCreateUser;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAppointmentCreateUser()
+    {
+        return $this->appointmentCreateUser;
+    }
+
 
 
 

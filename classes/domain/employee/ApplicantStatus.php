@@ -13,6 +13,9 @@ class ApplicantStatus {
 
     protected  $statusID = '';
     protected  $statusName = '';
+    protected  $statusGroup = '';
+    protected $statusCreateUser = '';
+    protected $statusCreateDate = '';
 
     /**
      * @return string
@@ -46,6 +49,52 @@ class ApplicantStatus {
         $this->statusName = $statusName;
     }
 
+    /**
+     * @param string $statusGroup
+     */
+    public function setStatusGroup($statusGroup)
+    {
+        $this->statusGroup = $statusGroup;
+    }
 
+    /**
+     * @return string
+     */
+    public function getStatusGroup()
+    {
+        return $this->statusGroup;
+    }
+
+    /**
+     * @param string $statusCreateDate
+     */
+    public function setStatusCreateDate($statusCreateDate)
+    {
+        $this->statusCreateDate = $statusCreateDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusCreateDate()
+    {
+        return $this->statusCreateDate;
+    }
+
+    /**
+     * @param string $statusCreateUser
+     */
+    public function setStatusCreateUser($statusCreateUser)
+    {
+        $this->statusCreateUser = $statusCreateUser;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusCreateUser()
+    {
+        return $this->statusCreateUser;
+    }
 
 } 
