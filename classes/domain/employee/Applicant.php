@@ -6,8 +6,6 @@
  * Time: 9:08 PM
  */
 
-namespace classes\domain\employee;
-
 
 class Applicant {
 
@@ -30,7 +28,8 @@ class Applicant {
     protected $applicantDate = '';
     protected $applicantEmployeeID = '';
     protected $applicantOfficeID = '';
-    protected $applicantStatus = '';
+    protected $applicantOffice = '';
+    protected $applicantStatus = array();
 
     /**
      * @return string
@@ -352,8 +351,20 @@ class Applicant {
         $this->applicantZip = $applicantZip;
     }
 
+    /**
+     * @param string $applicantOffice
+     */
+    public function setApplicantOffice($applicantOffice)
+    {
+        $this->applicantOffice = $applicantOffice;
+    }
 
-
-
+    /**
+     * @return string
+     */
+    public function getApplicantOffice()
+    {
+        return $this->applicantOffice;
+    }
 
 } 

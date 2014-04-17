@@ -38,7 +38,10 @@ $filePaths = array(
     'about_us'                          => 'views/about/about_us.php',
 
     //employment
-    'employment'                        => 'views/employment/employment.php'
+    'employment'                        => 'views/employment/employment.php',
+
+    //Applicants
+    'applicants'                        => 'ajax/admin_fixed/tables.php'
 
 
 

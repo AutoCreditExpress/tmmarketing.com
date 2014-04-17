@@ -6,17 +6,20 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-namespace classes\domain\employee;
-
-
-use OAuth2\Exception;
-
 class ApplicantDAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                                       Find
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    protected $db = '';
+
+    function __construct(PDO $pdo)
+    {
+        $this->db = $pdo;
+    }
+
     function getApplicant($applicantID){
 
         $qGetApplicant = $this->db->prepare("
@@ -36,6 +39,29 @@ class ApplicantDAO {
 
     }
 
+    function getAllApplicants($dateStart = null, $dateEnd = null){
+
+        if($dateStart && $dateEnd){
+            $dateInput = "WHERE applicant_date >= '".$dateStart."' AND applicant_date <= '".$dateEnd."'";
+        }
+
+        $qGetApplicant = $this->db->prepare("
+            SELECT * FROM applicant $dateInput;
+
+        ");
+
+        try{
+            $qGetApplicant->execute();
+            $applicants = $this->mapApplicantToObjects($qGetApplicant);
+
+            return $applicants;
+
+        }catch(Exception $e){
+            echo $e;
+            return false;
+        }
+
+    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                                      Create
@@ -113,6 +139,7 @@ class ApplicantDAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function mapApplicantToObjects(PDOStatement $stmt){
         $applicants = array(); //Array that will contain many Lists.
+
         try{
             //Checks to see if there are no applicants returned.
             if( ($aRow = $stmt->fetch()) === false) {
@@ -137,8 +164,17 @@ class ApplicantDAO {
                 $applicant->setApplicantCompany2($aRow['applicant_company2']);
                 $applicant->setApplicantPosition2($aRow['applicant_position2']);
                 $applicant->setApplicantResponse2($aRow['applicant_response2']);
-                $applicant->setApplicantDate($aRow['applicant_response2']);
+                $applicant->setApplicantDate($aRow['applicant_date']);
                 $applicant->setApplicantOfficeID($aRow['applicant_office_id']);
+                $OfficeDAO = new OfficeDAO($this->db);
+                $ApplicantStatusDAO = new ApplicantStatusDAO($this->db);
+                $latestAppointment = $ApplicantStatusDAO->getLatestAppointmentStatusForUser($applicant->getApplicantID());
+                $applicant->setApplicantStatus($latestAppointment);
+                $office = $OfficeDAO->getOfficeFromID($applicant->getApplicantOfficeID());
+                $applicant->setApplicantOffice($office->getOfficeName());
+
+
+
                 $applicants[] = $applicant; // applicant to main array.
             } while(($aRow = $stmt->fetch()) !== false);
         } catch(Exception $e){

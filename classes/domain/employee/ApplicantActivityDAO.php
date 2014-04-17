@@ -40,6 +40,23 @@ class ApplicantActivityDAO {
         }
     }
 
+    function getAllActivitiesForUser($userID){
+        $qAllActivities = $this->db->prepare("
+            SELECT * FROM applicant_activity WHERE applicant_id = '".$userID."' ;
+        ");
+
+        try{
+            $qAllActivityResults = $qAllActivities->execute();
+            $allActivities = $this->mapNoteToObjects($qAllActivityResults);
+
+            return $allActivities;
+        }
+        catch(Exception $e){
+            echo $e;
+            return false;
+        }
+    }
+
     function getActivityFromID($activityID){
         $qActivity = $this->db->prepare("
             SELECT * FROM applicant_activity WHERE ac_id =;

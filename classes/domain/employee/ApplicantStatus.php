@@ -6,9 +6,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-namespace classes\domain\employee;
-
-
 class ApplicantStatus {
 
     protected  $statusID = '';
@@ -16,6 +13,7 @@ class ApplicantStatus {
     protected  $statusGroup = '';
     protected $statusCreateUser = '';
     protected $statusCreateDate = '';
+    protected $statusDate = '00-00-00 00:00:00';
 
     /**
      * @return string
@@ -96,5 +94,23 @@ class ApplicantStatus {
     {
         return $this->statusCreateUser;
     }
+
+    /**
+     * @param string $statusDate
+     */
+    public function setStatusDate($statusDate)
+    {
+        $this->statusDate = $statusDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusDate()
+    {
+        return $this->statusDate;
+    }
+
+
 
 } 

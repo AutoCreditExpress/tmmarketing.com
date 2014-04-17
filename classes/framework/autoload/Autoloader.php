@@ -27,7 +27,17 @@ class Autoloader{
         'Session'                       => '/domain/security/Session.php',
 
         //contact
-        'ContactDAO'                    => '/domain/contact/ContactDAO.php'
+        'ContactDAO'                    => '/domain/contact/ContactDAO.php',
+
+        //Applicant
+        'ApplicantDAO'                  => '/domain/employee/ApplicantDAO.php',
+        'Applicant'                     => '/domain/employee/Applicant.php',
+        'ApplicantStatusDAO'            => '/domain/employee/ApplicantStatusDAO.php',
+        'ApplicantStatus'               => '/domain/employee/ApplicantStatus.php',
+
+        //Office
+        'OfficeDAO'                     => '/domain/office/OfficeDAO.php',
+        'Office'                        => '/domain/office/Office.php'
 
     );
     public function __construct($basePath) {
@@ -42,7 +52,7 @@ class Autoloader{
     public function autoload($className) {
 
         if( isset($this->classes[$className])){
-                echo $this->getBasePath() . $this->classes[$className];
+                //echo $this->getBasePath() . $this->classes[$className];
             //if(!@include($this->getBasePath() . $this->classes[$className])) throw new Exception("Failed to include 'file'");
                 require_once ($this->getBasePath() . $this->classes[$className]);
 

@@ -5,12 +5,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-namespace classes\domain\employee;
-
-
-use OAuth2\Exception;
-
 class ApplicantStatusDAO {
 
     protected $db = '';
@@ -24,6 +18,25 @@ class ApplicantStatusDAO {
 //                                                       Find
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function getLatestAppointmentStatusForUser($userID){
+        $qAllStatuses = $this->db->prepare("
+            SELECT as_name, as_id, DATE_FORMAT(aa_date, '%b %e, %Y') AS aa_date FROM applicant_status
+            INNER JOIN applicant_status_group ON as_sg_id = asg_id AND asg_name = 'Appointment'
+            INNER JOIN applicant_activity ON aa_as_id = as_id AND aa_applicant_id = '".$userID."';
+        ");
+
+        try{
+            $qAllStatuses->execute();
+            $allStatuses = $this->mapStatusToObjects($qAllStatuses);
+
+            return $allStatuses;
+        }
+        catch(Exception $e){
+            echo $e;
+            return false;
+        }
+    }
 
     function getALLStatuses(){
         $qAllStatuses = $this->db->prepare("
@@ -104,7 +117,6 @@ class ApplicantStatusDAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     protected function mapStatusToObjects(PDOStatement $stmt){
-
         $statuses = array(); //Array that will contain many Status.
         try{
             //Checks to see if there are no Status returned.
@@ -118,6 +130,7 @@ class ApplicantStatusDAO {
                 $status->setStatusName($aRow['as_name']);
                 $status->setStatusGroup($aRow['as_asg_id']);
                 $status->setStatusCreateUser($aRow['as_create_employee_id']);
+                $status->setStatusDate($aRow['aa_date']);
                 $statuses[] = $status; // applicant to main array.
             } while(($aRow = $stmt->fetch()) !== false);
         } catch(Exception $e){
