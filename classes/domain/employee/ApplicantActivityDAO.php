@@ -6,9 +6,6 @@
  * Time: 1:05 PM
  */
 
-namespace classes\domain\employee;
-
-
 class ApplicantActivityDAO {
 
     protected $db = '';
@@ -29,8 +26,8 @@ class ApplicantActivityDAO {
         ");
 
         try{
-            $qAllActivityResults = $qAllActivities->execute();
-            $allActivities = $this->mapNoteToObjects($qAllActivityResults);
+            $qAllActivities->execute();
+            $allActivities = $this->mapActivityToObjects($qAllActivities);
 
             return $allActivities;
         }
@@ -42,12 +39,12 @@ class ApplicantActivityDAO {
 
     function getAllActivitiesForUser($userID){
         $qAllActivities = $this->db->prepare("
-            SELECT * FROM applicant_activity WHERE applicant_id = '".$userID."' ;
+            SELECT * FROM applicant_activity WHERE aa_applicant_id = '".$userID."' ORDER BY aa_id DESC ;
         ");
 
         try{
-            $qAllActivityResults = $qAllActivities->execute();
-            $allActivities = $this->mapNoteToObjects($qAllActivityResults);
+            $qAllActivities->execute();
+            $allActivities = $this->mapActivityToObjects($qAllActivities);
 
             return $allActivities;
         }
@@ -59,12 +56,12 @@ class ApplicantActivityDAO {
 
     function getActivityFromID($activityID){
         $qActivity = $this->db->prepare("
-            SELECT * FROM applicant_activity WHERE ac_id =;
+            SELECT * FROM applicant_activity WHERE ac_id = ".$activityID.";
         ");
 
         try{
-            $qActivityResult = $qActivity->execute();
-            $activity = $this->mapNoteToObjects($qActivityResult);
+            $qActivity->execute();
+            $activity = $this->mapActivityToObjects($qActivity);
 
             return $activity;
         }
@@ -80,17 +77,19 @@ class ApplicantActivityDAO {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    function createActivity($statusID,$employeeID){
+    function createActivity($statusID,$applicantID,$creatorID, $appointmentID = null){
 
         $qCreateActivity = $this->db->prepare("
-            INSERT INTO applicant_activity (aa_as_id, aa_date, aa_create_employee_id) VALUES (:statusID, :createDate, :employeeID)
+            INSERT INTO applicant_activity (aa_as_id, aa_date, aa_create_employee_id,aa_asa_id, aa_applicant_id) VALUES (:statusID, :createDate, :creatorID, :appointmentID, :applicantID)
         ");
 
         try{
             $createActivity = $qCreateActivity->execute(array(
                 ':statusID' => $statusID,
                 ':createDate' => date('Y-m-d H:i:s'),
-                ':employeeID' => $employeeID
+                ':applicantID'  => $applicantID,
+                ':creatorID' => $creatorID,
+                ':appointmentID' => $appointmentID
             ));
 
             return true;
@@ -118,7 +117,7 @@ class ApplicantActivityDAO {
 //                                                       Mapping
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected function mapNoteToObjects(PDOStatement $stmt){
+    protected function mapActivityToObjects(PDOStatement $stmt){
 
         $activities = array(); //Array that will contain many Status.
         try{
@@ -132,6 +131,12 @@ class ApplicantActivityDAO {
                 $activity->setActivityID($aRow['aa_id']);
                 $activity->setActivityStatusID($aRow['aa_as_id']);
                 $activity->setActivityDate($aRow['aa_date']);
+                $ApplicantStatusDAO = new ApplicantStatusDAO($this->db);
+                $id = $activity->getActivityStatusID();
+
+                $ApplicantStatus = $ApplicantStatusDAO->getStatusFromID($id);
+
+                $activity->setActivityStatusName($ApplicantStatus->getStatusName());
                 $activity->setActivityCreateUser($aRow['aa_create_employee_id']);
                 $activities[] = $activity; // applicant to main array.
             } while(($aRow = $stmt->fetch()) !== false);

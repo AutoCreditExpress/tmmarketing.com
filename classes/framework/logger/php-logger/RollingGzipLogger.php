@@ -123,7 +123,7 @@ class RollingGzipLogger extends PSR3_Log_LoggerTrait {
             $message .= (string)$exception;
     	}
 
-    	$this->acquireLock();
+    	//$this->acquireLock();
     	if( !isset($this->fp) ) {
     		$this->fp = @fopen($this->filename, 'a');
 		}
@@ -142,7 +142,7 @@ class RollingGzipLogger extends PSR3_Log_LoggerTrait {
 			throw new Exception("Cannot close log file {$this->filename}");
 		}
 		unset($this->fp);
-		$this->releaseLock();
+		//$this->releaseLock();
     }
     protected function isValidLogLevel($level) {
     	$clazz = null;
@@ -178,7 +178,7 @@ class RollingGzipLogger extends PSR3_Log_LoggerTrait {
 		return strtr($message, $replace);
 	}
 	protected function acquireLock() {
-		if( !isset($this->lockFp) ) {
+		/**if( !isset($this->lockFp) ) {
 	    	$this->lockFp = fopen($this->lockFilename, 'w+');
 	    	if( $this->lockFp === false ) {
 	    		throw new Exception("Cannot open lock file {$this->lockFilename}");
@@ -187,10 +187,10 @@ class RollingGzipLogger extends PSR3_Log_LoggerTrait {
 	    	if( @flock($this->lockFp, LOCK_EX) === false ) {
 	    		throw new Exception("Cannot acquire lock on {$this->lockFilename}");
 	    	}
-		}
+		}**/
 	}
 	protected function releaseLock() {
-		if( isset($this->lockFp) ) { 
+		/**if( isset($this->lockFp) ) {
 			if( @flock($this->lockFp, LOCK_UN) === false) {
 				throw new Exception("Fatal error unlocking lock file {$this->lockFilename}");
 			}
@@ -203,10 +203,10 @@ class RollingGzipLogger extends PSR3_Log_LoggerTrait {
 				throw new Exception("Fatal error deleting lock file {$this->lockFilename}");
 			}
 			unset($this->lockFp);
-		}
+		}**/
 	}
 	protected function rollOver() {
-		$this->acquireLock();
+		//$this->acquireLock();
     	if( !isset($this->fp) ) {
             echo $this->filename;
     		$this->fp = fopen($this->filename, 'rb');
@@ -232,7 +232,7 @@ class RollingGzipLogger extends PSR3_Log_LoggerTrait {
             	$this->error("Failed to create gzipped logfile {$gzFilename}");
             }
         }
-	    $this->releaseLock();
+	    //$this->releaseLock();
 	}
 
     public function is_windows() {

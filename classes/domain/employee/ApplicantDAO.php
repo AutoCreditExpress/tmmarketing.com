@@ -23,12 +23,12 @@ class ApplicantDAO {
     function getApplicant($applicantID){
 
         $qGetApplicant = $this->db->prepare("
-            SELECT * FROM applicant where applicant_id = ".$applicantID."
+            SELECT * FROM applicant WHERE applicant_id = ".$applicantID."
         ");
 
         try{
-            $applicantResult = $qGetApplicant->execute();
-            $applicant = $this->mapApplicantToObjects($applicantResult);
+            $qGetApplicant->execute();
+            $applicant = $this->mapApplicantToObjects($qGetApplicant);
 
             return $applicant;
 

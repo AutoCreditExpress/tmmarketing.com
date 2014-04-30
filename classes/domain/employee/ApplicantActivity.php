@@ -6,83 +6,33 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-namespace classes\domain\employee;
-
 
 class ApplicantActivity {
 
     protected $activityID = '';
     protected $activityStatusID = '';
     protected $activityDate = '';
+    protected $activityStatusName = '';
     protected $activityCreateUser = '';
     protected $activityUpdateUser = '';
     protected $activityCreateDate = '';
     protected $activityUpdateDate = '';
 
     /**
-     * @return string
+     * @param string $activityCreateDate
      */
-    public function getActivityDate()
+    public function setActivityCreateDate($activityCreateDate)
     {
-        return $this->activityDate;
-    }
-
-    /**
-     * @param string $activityDate
-     */
-    public function setActivityDate($activityDate)
-    {
-        $this->activityDate = $activityDate;
+        $this->activityCreateDate = $activityCreateDate;
     }
 
     /**
      * @return string
      */
-    public function getActivityID()
+    public function getActivityCreateDate()
     {
-        return $this->activityID;
+        return $this->activityCreateDate;
     }
-
-    /**
-     * @param string $activityID
-     */
-    public function setActivityID($activityID)
-    {
-        $this->activityID = $activityID;
-    }
-
-    /**
-     * @return string
-     */
-    public function getActivityStatusID()
-    {
-        return $this->activityStatusID;
-    }
-
-    /**
-     * @param string $activityStatusID
-     */
-    public function setActivityStatusID($activityStatusID)
-    {
-        $this->activityStatusID = $activityStatusID;
-    }
-
-    /**
-     * @return string
-     */
-    public function getApplicantStatus()
-    {
-        return $this->applicantStatus;
-    }
-
-    /**
-     * @param string $applicantStatus
-     */
-    public function setApplicantStatus($applicantStatus)
-    {
-        $this->applicantStatus = $applicantStatus;
-    }
-
 
     /**
      * @param string $activityCreateUser
@@ -100,9 +50,101 @@ class ApplicantActivity {
         return $this->activityCreateUser;
     }
 
+    /**
+     * @param string $activityDate
+     */
+    public function setActivityDate($activityDate)
+    {
+        $this->activityDate = $activityDate;
+    }
 
+    /**
+     * @return string
+     */
+    public function getActivityDate()
+    {
+        return $this->activityDate;
+    }
 
+    /**
+     * @param string $activityID
+     */
+    public function setActivityID($activityID)
+    {
+        $this->activityID = $activityID;
+    }
 
+    /**
+     * @return string
+     */
+    public function getActivityID()
+    {
+        return $this->activityID;
+    }
+
+    /**
+     * @param string $activityStatusID
+     */
+    public function setActivityStatusID($activityStatusID)
+    {
+        $this->activityStatusID = $activityStatusID;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActivityStatusID()
+    {
+        return $this->activityStatusID;
+    }
+
+    /**
+     * @param string $activityUpdateDate
+     */
+    public function setActivityUpdateDate($activityUpdateDate)
+    {
+        $this->activityUpdateDate = $activityUpdateDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActivityUpdateDate()
+    {
+        return $this->activityUpdateDate;
+    }
+
+    /**
+     * @param string $activityUpdateUser
+     */
+    public function setActivityUpdateUser($activityUpdateUser)
+    {
+        $this->activityUpdateUser = $activityUpdateUser;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActivityUpdateUser()
+    {
+        return $this->activityUpdateUser;
+    }
+
+    /**
+     * @param string $activityStatusName
+     */
+    public function setActivityStatusName($activityStatusName)
+    {
+        $this->activityStatusName = $activityStatusName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActivityStatusName()
+    {
+        return $this->activityStatusName;
+    }
 
 
 

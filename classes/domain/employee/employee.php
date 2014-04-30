@@ -6,8 +6,6 @@
  * Time: 8:57 PM
  */
 
-namespace classes\domain\employee;
-
 
 class Employee {
 

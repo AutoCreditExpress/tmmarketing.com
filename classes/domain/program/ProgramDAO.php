@@ -5,55 +5,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-class TitleDAO {
-
-    protected $db = '';
-
-    function __construct(PDO $pdo){
-        $this->db = $pdo;
-    }
-
+class ProgramDAO {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                                       Find
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    function getAllTitles(){
-
-        $qAllTitles = $this->db->prepare("
-            SELECT * FROM title;
-        ");
-
-        try{
-            $allTitleResults = $qAllTitles->execute();
-
-            $allTitles = $this->mapTitleToObjects($allTitleResults);
-
-            return $allTitles;
-        }
-        catch(Exception $e){
-            echo $e;
-            return false;
-        }
-    }
-
-    function getTitleFromID($titleID){
-        $qTitle = $this->db->prepare("
-            SELECT * FROM title WHERE title_id = ".$titleID.";
-        ");
-
-        try{
-            $qTitle->execute();
-            $title = $this->mapTitleToObjects($qTitle);
-            return $title;
-        }
-        catch(Exception $e){
-            echo $e;
-            return false;
-        }
-    }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -79,31 +36,5 @@ class TitleDAO {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    protected function mapTitleToObjects(PDOStatement $stmt){
-        $titles = array(); //Array that will contain many titles.
-        try{
-            //Checks to see if there are no titles returned.
-            if( ($aRow = $stmt->fetch()) === false) {
-                return array();
-            }
-            do{
-                //Creates new user profile object for each titles selected.
-                $title = new Title();
-                $title->setTitleID($aRow['title_id']);
-                $title->setTitleName($aRow['title_name']);
-                $titles[] = $title; // applicant to main array.
-            } while(($aRow = $stmt->fetch()) !== false);
-        } catch(Exception $e){
-            //Error in initial SQL statement.
-            echo $e;
-        }
-        //Final results will all the titles.
-        if(count($titles) == 1){
-            return $titles[0];
-        }
-        else{
-            return $titles;
-        }
 
-    }
 } 

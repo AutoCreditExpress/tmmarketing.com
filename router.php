@@ -39,9 +39,14 @@ $filePaths = array(
 
     //employment
     'employment'                        => 'views/employment/employment.php',
+    'hire'                              => 'inc/appointments/hire.php',
 
     //Applicants
-    'applicants'                        => 'ajax/admin_fixed/tables.php'
+    'applicants'                        => 'portal/applicants.php',
+    'pre_hire'                          => 'portal/applicant_pre_hire.php',
+    'schedule_appointment'              => 'portal/schedule_appointment.php',
+    'create_appointment'                => 'inc/appointments/create_appointment.php',
+    'showed_interview'                  => 'inc/appointments/showed_interview.php'
 
 
 

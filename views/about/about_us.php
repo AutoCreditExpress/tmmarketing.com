@@ -95,32 +95,6 @@ include($docPath.'inc/template/header.php');
                   </div>
               </div>
           </div>
-          <div class="span4 last">
-              <div class="inner-content">
-                  <div class="person">
-                      <div class="image"> <img src="<?php echo $webPath;?>images/mike_c.jpg" alt="Mike C."> </div>
-                      <div class="person-info">
-                          <h3>Michael C.</h3>
-                          <h6>Regional Sales Manager</h6>
-                      </div>
-                      <p>
-                          He has worked with several energy companies in different
-                          markets throughout Michigan, Maryland, New
-                          Jersey, Pennsylvania, Connecticut, and Ohio. He has also launched
-                          offices and maintained a standard for success for each of those. The same plan
-                          has been in place from day 1 - mass customer acquisitions. But
-                          above all, building and protecting a brand name. He takes
-                          great pride and pleasure in the continued growth of the
-                          companies we partner with.
-                      </p>
-                      mcasorla@wemarketenergy.com
-                  </div>
-              </div>
-          </div>
-      </div>
-        <div class="gap"></div>
-
-        <div class="row-fluid">
           <div class="span4">
               <div class="inner-content">
                   <div class="person">
