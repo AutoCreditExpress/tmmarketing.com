@@ -1,5 +1,5 @@
 <?php
-
+echo 'the pre'; exit;
 if($_POST){
     echo $_POST['showed'];
 }
@@ -82,7 +82,7 @@ include($docPath.'inc/template/portalHeader.php');
                 <h2>Applicant Management</h2>
                 <?php echo $statusMessage;?>
                 <!-- row- -->
-                <div class="row">
+                <div class="row">This is the file
                     <!-- col -->
                     <div class="col-sm-12">
                         <!-- row-app -->

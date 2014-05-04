@@ -21,7 +21,7 @@ class ApplicantDAO {
     }
 
     function getApplicant($applicantID){
-
+    echo $applicantID; exit;
         $qGetApplicant = $this->db->prepare("
             SELECT * FROM applicant WHERE applicant_id = ".$applicantID."
         ");
